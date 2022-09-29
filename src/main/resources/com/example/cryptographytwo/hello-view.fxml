@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="559.0" style="-fx-background-color: #79cbb8;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptographytwo.HelloController">
+   <children>
+      <Button layoutX="409.0" layoutY="32.0" mnemonicParsing="false" onAction="#searchSymbols" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #2296F5;" text="Символы" textFill="WHITE" />
+      <Button layoutX="409.0" layoutY="88.0" mnemonicParsing="false" onAction="#searchProbabilities" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #2296F5;" text="Вероятность" textFill="WHITE" />
+      <TextField fx:id="lineSymbols" layoutX="54.0" layoutY="32.0" prefHeight="34.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" />
+      <TextField fx:id="lineProbability" layoutX="54.0" layoutY="88.0" prefHeight="34.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" />
+      <ImageView fx:id="coffee" fitHeight="62.0" fitWidth="70.0" layoutX="483.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@coffee.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="algorithmButton" layoutX="67.0" layoutY="154.0" mnemonicParsing="false" onAction="#algorithm" prefHeight="90.0" prefWidth="99.0" style="-fx-background-color: #79cbb8;">
+         <graphic>
+            <ImageView fitHeight="90.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pr.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="253.0" layoutY="153.0" mnemonicParsing="false" onAction="#nameTeam" prefHeight="93.0" prefWidth="99.0" style="-fx-background-color: #79cbb8;">
+         <graphic>
+            <ImageView fitHeight="90.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@study.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</Pane>
