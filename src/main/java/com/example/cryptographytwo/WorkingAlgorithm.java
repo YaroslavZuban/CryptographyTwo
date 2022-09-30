@@ -29,15 +29,22 @@ public class WorkingAlgorithm {
     private TextField inequality;
 
     @FXML
-    private TextField redundancy;
-
-    @FXML
     private TextField lineCode;
 
     @FXML
-    private Pane work;
+    private TextField lineCodeTwo;
 
+    @FXML
+    private TextField redundancy;
+
+    @FXML
+    private Pane work;
     private File file;
+
+    @FXML
+    void encryption(ActionEvent event) {
+
+    }
 
     @FXML
     void isHome(ActionEvent event) throws IOException {

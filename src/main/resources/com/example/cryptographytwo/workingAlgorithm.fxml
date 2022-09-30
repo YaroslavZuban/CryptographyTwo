@@ -57,11 +57,22 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button layoutX="568.0" layoutY="261.0" mnemonicParsing="false" onAction="#searchCode" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2296F5;" text="Перевести" textFill="WHITE" />
-      <Text layoutX="22.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Файл который нужно расшифровать: " wrappingWidth="313.9830722808838">
+      <Button layoutX="568.0" layoutY="261.0" mnemonicParsing="false" onAction="#searchCode" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2296F5;" text="Расшифровать" textFill="WHITE" />
+      <Text layoutX="14.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Файл который нужно расшифровать: " wrappingWidth="313.9830722808838">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
+      <TextField fx:id="lineCodeTwo" editable="false" layoutX="15.0" layoutY="184.0" prefHeight="30.0" prefWidth="541.0" style="-fx-background-color: #FFFFFF;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Text layoutX="14.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Файл который нужно зашифровать: " wrappingWidth="313.9830722808838">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="568.0" layoutY="184.0" mnemonicParsing="false" onAction="#encryption" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: #2296F5;" text="Зашифровать" textFill="WHITE" />
    </children>
 </Pane>
