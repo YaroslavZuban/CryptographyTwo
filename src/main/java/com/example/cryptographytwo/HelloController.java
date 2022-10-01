@@ -20,6 +20,7 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloController {
     @FXML
@@ -51,28 +52,38 @@ public class HelloController {
         SearchFile.search(fileSymbols, lineSymbols);
     }
 
-
     @FXML
     void searchProbabilities(ActionEvent event) {
         SearchFile.search(fileProbability, lineProbability);
     }
 
-
     @FXML
     void algorithm(ActionEvent event) throws IOException {
-        Stage ss = (Stage) main.getScene().getWindow();
-        ss.close();
 
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("workingAlgorithm.fxml"));
+        if(Objects.equals(lineSymbols.getText(), "") || Objects.equals(lineProbability.getText(), "")){
+            error("Ставьте файл символы и вероятности!");
+        }else {
+            Stage ss = (Stage) main.getScene().getWindow();
+            ss.close();
 
-        Stage stage = new Stage();
-        Scene scene = new Scene(loader.load());
-        stage.setTitle("Cryptography");
-        stage.getIcons().add(new Image(HelloApplication.class.getResourceAsStream("bit.png")));
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("workingAlgorithm.fxml"));
 
+            Stage stage = new Stage();
+            Scene scene = new Scene(loader.load());
+
+            stage.setTitle("Cryptography");
+            stage.getIcons().add(new Image(HelloApplication.class.getResourceAsStream("bit.png")));
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            WorkingFiles workingFiles=new WorkingFiles();
+
+            HilbertMoore.algorithm(workingFiles.readingNumber(lineProbability.getText()));
+            HilbertMoore.symbol=workingFiles.readingCharacter(lineSymbols.getText());
+
+            workingFiles.writingCharactersCipher(HilbertMoore.symbol,HilbertMoore.encoded);
+        }
     }
 
     @FXML
@@ -86,12 +97,10 @@ public class HelloController {
         alert.setContentText("Группа ПМИ-01\nБриганда 8\nЗубань Ярослав\nПавлович Владислав");
 
         alert.showAndWait();
-
-
     }
 
 
-    private void error() {
+    private void error(String line) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.initOwner((Stage) main.getScene().getWindow().getScene().getWindow());
@@ -99,10 +108,8 @@ public class HelloController {
 
         // Header Text: null
         alert.setHeaderText(null);
-        alert.setContentText("Не эффективное сжатие!");
+        alert.setContentText(line);
 
         alert.showAndWait();
-
-
     }
 }

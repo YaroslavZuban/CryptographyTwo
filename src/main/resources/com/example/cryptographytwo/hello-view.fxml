@@ -10,8 +10,8 @@
    <children>
       <Button layoutX="409.0" layoutY="32.0" mnemonicParsing="false" onAction="#searchSymbols" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #2296F5;" text="Символы" textFill="WHITE" />
       <Button layoutX="409.0" layoutY="88.0" mnemonicParsing="false" onAction="#searchProbabilities" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #2296F5;" text="Вероятность" textFill="WHITE" />
-      <TextField fx:id="lineSymbols" layoutX="54.0" layoutY="32.0" prefHeight="34.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" />
-      <TextField fx:id="lineProbability" layoutX="54.0" layoutY="88.0" prefHeight="34.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" />
+      <TextField fx:id="lineSymbols" editable="false" layoutX="54.0" layoutY="32.0" prefHeight="34.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" />
+      <TextField fx:id="lineProbability" editable="false" layoutX="54.0" layoutY="88.0" prefHeight="34.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" />
       <ImageView fx:id="coffee" fitHeight="62.0" fitWidth="70.0" layoutX="483.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@coffee.png" />

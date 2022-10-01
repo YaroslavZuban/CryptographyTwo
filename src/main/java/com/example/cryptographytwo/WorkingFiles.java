@@ -1,5 +1,7 @@
 package com.example.cryptographytwo;
 
+import javafx.scene.control.TextArea;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,9 +46,14 @@ public class WorkingFiles {
 
     public void writingCharactersCipher(List<String> character, List<String> cipher) {
         try (FileWriter writer = new FileWriter("charAndCode.txt", false)) {
-            for (int i = 0; i < character.size(); i++) {
-                writer.write(character.get(i) + " - " + cipher.get(i) + "\n");
 
+            if(HilbertMoore.symbol.size()!=HilbertMoore.probabilities.size()){
+                writer.write("Не равное количество символов и вероятности. Проверти файлы!.");
+            }else {
+                for (int i = 0; i < character.size(); i++) {
+                    writer.write(character.get(i) + " - " + cipher.get(i) + "\n");
+
+                }
             }
 
             writer.flush();
@@ -98,7 +105,7 @@ public class WorkingFiles {
                 if (vals[i].indexOf('-') != -1) {
                     probabilities.add((double) (-Integer.parseInt(vals[i].substring(vals[i].indexOf("-") + 1, vals[i].indexOf("/"))) / Integer.parseInt(vals[i].substring(vals[i].indexOf("/") + 1))));
                 } else {
-                    probabilities.add((double) (Integer.parseInt(vals[i].substring(0, vals[i].indexOf("/"))) / Integer.parseInt(vals[i].substring(vals[i].indexOf("/") + 1))));
+                    probabilities.add( Integer.parseInt(vals[i].substring(0, vals[i].indexOf("/"))) /(double)Integer.parseInt(vals[i].substring(vals[i].indexOf("/") + 1)));
                 }
             }
         }
