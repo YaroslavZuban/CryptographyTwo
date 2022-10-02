@@ -2,17 +2,23 @@ package com.example.cryptographytwo;
 
 import java.util.ArrayList;
 import java.util.List;
+/**Класс который работает с алгоритмом Гильбурда - Мура
+ * вычиляется:
+ * избыточность
+ * Неравенство Крафта
+ * Длинна среднего слова
+ * Есть приватные методы которые переводят, вещественное число из десятичной системы счисления в двоичную**/
 
 public class HilbertMoore {
 
-    public static List<Double> probabilities = new ArrayList<>();
-    public static List<Integer> sizeCode = new ArrayList<>();
+    public static List<Double> probabilities = new ArrayList<>();//список вещественных чисел
+    public static List<Integer> sizeCode = new ArrayList<>();//список целочисленных
 
-    public static List<String> symbol = new ArrayList<>();
-    public static List<String> encoded = new ArrayList<>();
+    public static List<String> symbol = new ArrayList<>();//список строковых
+    public static List<String> encoded = new ArrayList<>();//список строковых
 
 
-    public static Double middleWord() {
+    public static Double middleWord() {//методы вычисляет длинну среднюю длинну слова
         double l = 0;
 
         for (int i = 0; i < probabilities.size(); i++) {
@@ -22,10 +28,8 @@ public class HilbertMoore {
         return l;
     }
 
-
-    public static Double redundancy() {
+    public static Double redundancy() {//метод вычиляет избыточность
         double Hmax = Math.log10(probabilities.size()) / Math.log10(2);
-
         double H = 0;
 
         for (int i = 0; i < probabilities.size(); i++) {
@@ -38,7 +42,7 @@ public class HilbertMoore {
     }
 
 
-    public static String inequalityKrafts() {
+    public static String inequalityKrafts() {//метод неравенство крафта
         double sum = 0;
 
         for (int i = 0; i < sizeCode.size(); i++) {
@@ -52,7 +56,7 @@ public class HilbertMoore {
         return "не выполняется (" + sum + ")";
     }
 
-    public static void algorithm(List<Double> symbolProbabilities) {
+    public static void algorithm(List<Double> symbolProbabilities) {//алгоритм Гильберта - Мура
         probabilities = symbolProbabilities;
         List<Double> cumulativeProbability = new ArrayList<>();
 
@@ -69,7 +73,7 @@ public class HilbertMoore {
         }
 
         for (int i = 0; i < symbolProbabilities.size(); i++) {
-            encoded.add(toBinary(cumulativeProbability.get(i), sizeCode.get(i)));
+            encoded.add(toBinary(cumulativeProbability.get(i), sizeCode.get(i)));//Перевод из 10 СС в 2
         }
     }
 
@@ -81,6 +85,7 @@ public class HilbertMoore {
 
     private static String fractionalToBinary(double num, int precision) {
         StringBuilder binary = new StringBuilder();
+
         while (binary.length() < precision) {
             double r = num * 2;
             if (r >= 1) {
