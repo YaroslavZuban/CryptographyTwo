@@ -22,23 +22,20 @@ public class HilbertMoore {
         double l = 0;
 
         for (int i = 0; i < probabilities.size(); i++) {
-            l += probabilities.get(i) * sizeCode.get(i);
+            l += probabilities.get(i) *sizeCode.get(i);// (Math.log10(probabilities.get(i)) / Math.log10(2));
         }
 
         return l;
     }
 
     public static Double redundancy() {//метод вычиляет избыточность
-        double Hmax = Math.log10(probabilities.size()) / Math.log10(2);
         double H = 0;
 
         for (int i = 0; i < probabilities.size(); i++) {
             H += probabilities.get(i) * (Math.log10(probabilities.get(i)) / Math.log10(2));
         }
 
-        H *= -1;
-
-        return 1 - H / Hmax;
+        return HilbertMoore.middleWord()- (-1) *H;
     }
 
 

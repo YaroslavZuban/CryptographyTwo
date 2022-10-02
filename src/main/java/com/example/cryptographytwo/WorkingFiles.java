@@ -70,7 +70,7 @@ public class WorkingFiles {
         List<Double> probabilities = new ArrayList<>(); //создаются список вещественных вероятностей
 
         if (temp.indexOf('^') != -1 || temp.indexOf('/') != -1) {//данное условие проверяет если в созданной строке степень или деление
-            powerTwo(vals);//вызывает функцию которая возвращает список вещественных чисел, данная функция работает со степенью или делением
+            probabilities=powerTwo(vals);//вызывает функцию которая возвращает список вещественных чисел, данная функция работает со степенью или делением
         }else {
             for (String number : vals) {
                 probabilities.add(Double.parseDouble(number));//переводим строки вещественных чисел в вещественные чисал и добавляем в список
@@ -90,28 +90,30 @@ public class WorkingFiles {
         return reading(files);//функция выдает полученные строку
     }
 
-    private void powerTwo(String[] vals) {//возвращает список вещественных чисел, работа с двойками и делением
-        List<Double> probabilities = new ArrayList<>();//создаем список вещественных чисел
+    private  List<Double> powerTwo(String[] vals) {//возвращает список вещественных чисел, работа с двойками и делением
+        List<Double> probabilities = new ArrayList<>();
 
         for (int i = 0; i < vals.length; i++) {
             if (vals[i].indexOf('^') != -1) {//если в элементе массива есть возведение в степень
                 if (vals[i].indexOf('-') != -1) {//проверяется там отрицательно число или положительное
-                    probabilities.add(Math.pow(2, -Integer.parseInt(vals[i].substring(vals[i].indexOf("-") + 1, vals[i].indexOf(")")))));//берем число от минуса до закрытой скобки, переводим в целый тип и возводим двойку
+                   probabilities.add(Math.pow(2, -Integer.parseInt(vals[i].substring(vals[i].indexOf("-") + 1, vals[i].indexOf(")")))));//берем число от минуса до закрытой скобки, переводим в целый тип и возводим двойку
                 } else {
                     probabilities.add(Math.pow(2, Integer.parseInt(vals[i].substring(vals[i].indexOf("(") + 1, vals[i].indexOf(")")))));//берем число от начальной до закрытой строки, переводим в целый тип и возводим двойку
                 }
 
-                break;
+                continue;
             }
 
             if (vals[i].indexOf('/') != -1) {//если в элементе массива есть деление
                 if (vals[i].indexOf('-') != -1) {//если есть минус в массиве и решается какое число будет положительное/отрицательное
                     probabilities.add((double) (-Integer.parseInt(vals[i].substring(vals[i].indexOf("-") + 1, vals[i].indexOf("/"))) / Integer.parseInt(vals[i].substring(vals[i].indexOf("/") + 1))));
                 } else {
-                    probabilities.add( Integer.parseInt(vals[i].substring(0, vals[i].indexOf("/"))) /(double)Integer.parseInt(vals[i].substring(vals[i].indexOf("/") + 1)));
+                   probabilities.add( Integer.parseInt(vals[i].substring(0, vals[i].indexOf("/"))) /(double)Integer.parseInt(vals[i].substring(vals[i].indexOf("/") + 1)));
                 }
             }
         }
+
+        return probabilities;
     }
 
     private String reading(String files) throws IOException {//считывание с файла  принимает строку пути файла
