@@ -48,26 +48,33 @@ public class HelloController {
         if(Objects.equals(lineSymbols.getText(), "") || Objects.equals(lineProbability.getText(), "")){//если не все данные ведены, алгоритм не будет вычисляться
             Error.error("Ставьте файл символы и вероятности!",main);//ошибка
         }else {
-            Stage ss = (Stage) main.getScene().getWindow();//береться параметры стратого она и закрывается
-            ss.close();//закрытия окна
-
-            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("workingAlgorithm.fxml"));//берется fxml ф
-
-            Stage stage = new Stage();//создается stage для запуска нового окна
-            Scene scene = new Scene(loader.load());//загружается дизайн с fxml
-
-            stage.setTitle("Cryptography");//название нового окна
-            stage.getIcons().add(new Image(HelloApplication.class.getResourceAsStream("bit.png")));//значок нового окна
-            stage.setScene(scene);//установка Scene для Stage
-            stage.setResizable(false);//запрещает пользователю изменять размер окна
-            stage.show();//Попытки показать это окно, установив для видимости значение true
-
             WorkingFiles workingFiles=new WorkingFiles();//создается класс работа с файлом
-
-            HilbertMoore.algorithm(workingFiles.readingNumber(lineProbability.getText()));//запускается статический метод алгоритм, который получает список вещественных чисел из файла который лежит по ссылки вероятности
             HilbertMoore.symbol=workingFiles.readingCharacter(lineSymbols.getText());//присвоение статическому полю список символов, который получается из считывания с файла по пути полученного из строки
+            HilbertMoore.probabilities=workingFiles.readingNumber(lineProbability.getText());
 
-            workingFiles.writingCharactersCipher(HilbertMoore.symbol,HilbertMoore.encoded);//запись в файл символов и какая кодировка соответсвует ему
+            if(HilbertMoore.probabilities==null){
+                Error.error("Тип данных не корректен ",main);
+            }else if (HilbertMoore.probabilities.size() != HilbertMoore.symbol.size()){
+                Error.error("Количетсво символов и вероятностей не равно!",main);
+            } else {
+                Stage ss = (Stage) main.getScene().getWindow();//береться параметры стратого она и закрывается
+                ss.close();//закрытия окна
+
+                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("workingAlgorithm.fxml"));//берется fxml ф
+
+                Stage stage = new Stage();//создается stage для запуска нового окна
+                Scene scene = new Scene(loader.load());//загружается дизайн с fxml
+
+                stage.setTitle("Cryptography");//название нового окна
+                stage.getIcons().add(new Image(HelloApplication.class.getResourceAsStream("bit.png")));//значок нового окна
+                stage.setScene(scene);//установка Scene для Stage
+                stage.setResizable(false);//запрещает пользователю изменять размер окна
+                stage.show();//Попытки показать это окно, установив для видимости значение true
+
+                HilbertMoore.algorithm(workingFiles.readingNumber(lineProbability.getText()));//запускается статический метод алгоритм, который получает список вещественных чисел из файла который лежит по ссылки вероятности
+
+                workingFiles.writingCharactersCipher(HilbertMoore.symbol, HilbertMoore.encoded);//запись в файл символов и какая кодировка соответсвует ему
+            }
         }
     }
     @FXML

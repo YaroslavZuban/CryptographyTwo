@@ -33,7 +33,7 @@ public class HilbertMoore {
         double H = 0;
 
         for (int i = 0; i < probabilities.size(); i++) {
-            H += probabilities.get(i) * Math.log10(probabilities.get(i)) / Math.log10(2);
+            H += probabilities.get(i) * (Math.log10(probabilities.get(i)) / Math.log10(2));
         }
 
         H *= -1;
@@ -57,7 +57,6 @@ public class HilbertMoore {
     }
 
     public static void algorithm(List<Double> symbolProbabilities) {//алгоритм Гильберта - Мура
-        probabilities = symbolProbabilities;
         List<Double> cumulativeProbability = new ArrayList<>();
 
         double temp = 0;

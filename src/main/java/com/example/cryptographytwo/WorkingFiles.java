@@ -3,10 +3,8 @@ package com.example.cryptographytwo;
 import javafx.scene.control.TextArea;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+
 /**Класс разработал для того чтобы реализовать чтения/запись**/
 public class WorkingFiles {
 
@@ -69,14 +67,20 @@ public class WorkingFiles {
         String temp = reading(files);//получаем строку символов
         String[] vals = temp.split(",");//разбивает строку в котором встречается запитаяявляется как разделитель и создается массив строк
 
-        if (temp.indexOf('^') != -1 || temp.indexOf('/') != -1) {//данное условие проверяет если в созданной строке степень или деление
-            return powerTwo(vals);//вызывает функцию которая возвращает список вещественных чисел, данная функция работает со степенью или делением
-        }
-
         List<Double> probabilities = new ArrayList<>(); //создаются список вещественных вероятностей
 
-        for (String number : vals) {
-            probabilities.add(Double.parseDouble(number));//переводим строки вещественных чисел в вещественные чисал и добавляем в список
+        if (temp.indexOf('^') != -1 || temp.indexOf('/') != -1) {//данное условие проверяет если в созданной строке степень или деление
+            powerTwo(vals);//вызывает функцию которая возвращает список вещественных чисел, данная функция работает со степенью или делением
+        }else {
+            for (String number : vals) {
+                probabilities.add(Double.parseDouble(number));//переводим строки вещественных чисел в вещественные чисал и добавляем в список
+            }
+        }
+
+        double sum=probabilities.stream().mapToDouble(a->a).sum();
+
+        if(sum!=1 ){
+            return null;
         }
 
         return probabilities; //выдаем заданый списко
@@ -86,7 +90,7 @@ public class WorkingFiles {
         return reading(files);//функция выдает полученные строку
     }
 
-    private List<Double> powerTwo(String[] vals) {//возвращает список вещественных чисел, работа с двойками и делением
+    private void powerTwo(String[] vals) {//возвращает список вещественных чисел, работа с двойками и делением
         List<Double> probabilities = new ArrayList<>();//создаем список вещественных чисел
 
         for (int i = 0; i < vals.length; i++) {
@@ -108,8 +112,6 @@ public class WorkingFiles {
                 }
             }
         }
-
-        return probabilities;
     }
 
     private String reading(String files) throws IOException {//считывание с файла  принимает строку пути файла
