@@ -11,7 +11,7 @@ public class WorkCipher {
 
         while (true) {//бесконечный цикл
             int start = 0;//стартовый элемент
-            int count=1;//счетчик создан для того чтобы цикл не зацикливался
+            int count=0;//счетчик создан для того чтобы цикл не зацикливался
 
             for (int j = 0; j < HilbertMoore.symbol.size(); j++) {
                 int end = HilbertMoore.symbol.get(j).length();//берем длинну длинну символа

@@ -22,7 +22,7 @@ public class HilbertMoore {
         double l = 0;
 
         for (int i = 0; i < probabilities.size(); i++) {
-            l += probabilities.get(i) *sizeCode.get(i);// (Math.log10(probabilities.get(i)) / Math.log10(2));
+            l += probabilities.get(i) *sizeCode.get(i);//
         }
 
         return l;
